@@ -1,0 +1,30 @@
+<?php
+
+namespace Tests\Browser;
+
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+
+class RegistTest extends DuskTestCase
+{
+    /**
+     * A Dusk test example,
+     * @group regist
+     */
+    public function testExample(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                    ->assertSee('Modul 3')
+                    ->clickLink('Register')
+                    ->assertPathIs('/register')
+                    ->type('name', 'Muhammad Naufal Danuwijaya')
+                    ->type('email', 'danuwijayanaufal@gmail.com')
+                    ->type('password', 'naufal123')
+                    ->type('password_confirmation', 'naufal123')
+                    ->press('REGISTER');
+
+        });
+    }
+}
